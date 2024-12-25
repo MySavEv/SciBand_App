@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_events",
+  "info": {
+    "singularName": "roles-in-event",
+    "pluralName": "roles-in-events",
+    "displayName": "RolesInEvent",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "instrument": {
+      "type": "string",
+      "required": true
+    },
+    "max_players": {
+      "type": "integer",
+      "required": true
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "roles_in_events"
+    },
+    "signups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::signup.signup",
+      "mappedBy": "roles_in_event"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "roles_in_events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::roles-in-event.roles-in-event",
+      "mappedBy": "event"
+    }
+  }
+}

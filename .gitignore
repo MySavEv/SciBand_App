@@ -1,0 +1,10 @@
+# Backend
+backend/node_modules
+backend/.env
+
+# FrontEnd
+frontend/.env
+frontend/node_modules
+
+# Other
+db_volume
