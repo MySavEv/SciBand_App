@@ -41,20 +41,6 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      beforeEnter: async (to, from) => {
-        if (await isAuthen())
-          return true
-        else
-          return { name: 'login' }
-      },
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
     },
     {
       path: '/login',
@@ -65,8 +51,25 @@ const router = createRouter({
       path: '/band',
       name: 'band',
       component: () => import('../views/ฺBandView.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../views/ProfileView.vue')
     }
   ],
+})
+
+router.beforeEach(async (to, from) => {
+  if (
+    // make sure the user is authenticated
+    !await isAuthen() &&
+    // ❗️ Avoid an infinite redirect
+    to.name !== 'login'
+  ) {
+    // redirect the user to the login page
+    return { name: 'login' }
+  }
 })
 
 export default router
